@@ -6,7 +6,7 @@ Licnese: Creative Commons CC-BY-NC-SA
 Based On: "Iconic" by Siddy212
 -->
 
-<theme>
+<theme defaultTransition="instant">
 	<formatVersion>7</formatVersion>
 	
 	<!-- Includes -->
@@ -15,6 +15,17 @@ Based On: "Iconic" by Siddy212
 	<include>./fonts.xml</include>
 	<include>./file_paths.xml</include>
 	<include>./_inc/metadata/systems/${system.theme}.xml</include>
+
+	<subset name="aspect-ratio" displayName="Aspect Ratio">
+		<include if="${screen.width} == '720' && ${screen.height} == '720'" name="1-1-auto" displayName="Automatic" />
+		<include if="{screen.ratio} == '16/9'" name="16-9-auto" displayName="Automatic" />
+		<include if="{screen.ratio} == '16/10'" name="16-10-auto" displayName="Automatic" />
+		<include if="{screen.ratio} == '4/3'" name="4-3-auto" displayName="Automatic" />
+		<include name="16-9" displayName="16:9" />
+		<include name="16-10" displayName="16:10" />
+		<include name="4-3" displayName="4:3" />
+		<include name="1-1" displayName="1:1" />
+	</subset>
 
 	<!-- Mixed View -->
 	<!-- ~~~~~~~~~~ -->
@@ -40,8 +51,13 @@ Based On: "Iconic" by Siddy212
 			<path>${systemBackgroundArtPath}</path>
 			<default>${systemBackgroundArtDefaultPath}</default>
 			<origin>0.5 0.5</origin>
-			<pos>0.5 0.5</pos>
-			<minSize>1 1</minSize>
+			<pos ifSubset="aspect-ratio:16-9|16-9-auto|16-10|16-10-auto">0.5 0.5</pos>
+			<pos ifSubset="aspect-ratio:4-3|4-3-auto">0.57 0.5</pos>
+			<pos ifSubset="aspect-ratio:1-1|1-1-auto">0.6 0.5</pos>
+			<maxSize ifSubset="aspect-ratio:16-9|16-9-auto">1 1</maxSize>
+			<maxSize ifSubset="aspect-ratio:16-10|16-10-auto">1.0625 1</maxSize>
+			<maxSize ifSubset="aspect-ratio:4-3|4-3-auto">1.333333 1</maxSize>
+			<maxSize ifSubset="aspect-ratio:1-1|1-1-auto">1.7777 1</maxSize>
 			<linearSmooth>true</linearSmooth>
 			<zindex>0</zindex>
 		</image>
@@ -52,6 +68,7 @@ Based On: "Iconic" by Siddy212
 			<zindex>4</zindex>
 		</image>
 	</view>
+
 
 	<!-- Screen View -->
 	<!-- ~~~~~~~~~~~ -->
@@ -76,7 +93,10 @@ Based On: "Iconic" by Siddy212
 			<pos>0 0.94</pos>
 			<size>1 0.119444444444444</size>
 			<logoSize>0.18229166666 0.12407407407</logoSize>
-			<maxItemCount>3.8</maxItemCount>
+			<maxLogoCount ifSubset="aspect-ratio:16-9|16-9-auto">3.8</maxLogoCount>
+			<maxLogoCount ifSubset="aspect-ratio:16-10|16-10-auto">3.8</maxLogoCount>
+			<maxLogoCount ifSubset="aspect-ratio:4-3|4-3-auto">3.2</maxLogoCount>
+			<maxLogoCount ifSubset="aspect-ratio:1-1|1-1-auto">2.8</maxLogoCount>
 			<color>ffffff00</color>
 			<colorEnd>ffffff</colorEnd>
 			<gradientType>vertical</gradientType>
@@ -85,6 +105,7 @@ Based On: "Iconic" by Siddy212
 			<logoPos>0.13640625 0</logoPos>
 			<logoAlignment>center</logoAlignment>
 			<systemInfoDelay>8</systemInfoDelay>
+            <defaultTransition>instant</defaultTransition>
 		</carousel>
 		<image name="logo">
 			<path>${systemLogoPath}</path>
@@ -113,9 +134,15 @@ Based On: "Iconic" by Siddy212
 		</image>
 		<image name="overlay" extra="true">
 			<origin>0.5 0.5</origin>
-			<pos>0.5 0.5</pos>
-			<minSize>1 1</minSize>
-			<zIndex>14</zIndex>
+			<pos ifSubset="aspect-ratio:16-9|16-9-auto|16-10|16-10-auto">0.5 0.5</pos>
+			<pos ifSubset="aspect-ratio:4-3|4-3-auto">0.57 0.5</pos>
+			<pos ifSubset="aspect-ratio:1-1|1-1-auto">0.6 0.5</pos>
+			<maxSize ifSubset="aspect-ratio:16-9|16-9-auto">1 1</maxSize>
+			<maxSize ifSubset="aspect-ratio:16-10|16-10-auto">1.0625 1</maxSize>
+			<maxSize ifSubset="aspect-ratio:4-3|4-3-auto">1.333333 1</maxSize>
+			<maxSize ifSubset="aspect-ratio:1-1|1-1-auto">1.7777 1</maxSize>
+			<linearSmooth>true</linearSmooth>
+			<zIndex>16</zIndex>
 			<path>${overlayPath}</path>
 		</image>
 
